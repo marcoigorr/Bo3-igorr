@@ -17,6 +17,8 @@ DWORD WINAPI MainThread(HMODULE hModule)
     bool bHealth = false, bGHealth = false;
     bool bEntCout = false;
 
+    bool bInstantKill = false;
+
     while (!ejectDLL)
     {
         if (GetAsyncKeyState(VK_INSERT) & 1)
@@ -28,12 +30,13 @@ DWORD WINAPI MainThread(HMODULE hModule)
         uintptr_t clientAttributes = moduleBase + 0x0A54BDE8; // hp
         uintptr_t clientWeapon = moduleBase + 0x0A54BDE0; // ammo/mag/grenades
         uintptr_t clientInfo = moduleBase + 0x179086D8; // nick/points
+        uintptr_t zm_entList = moduleBase + 0x0A5701B8; //zm_hp/zm_pos
 
         // -- unlimited ammo (you)
-        if (GetAsyncKeyState(VK_F1) & 1 || ejectDLL)
+        if (GetAsyncKeyState(VK_F1) & 1)
             bAmmo = !bAmmo;
 
-        if (bAmmo && !ejectDLL)
+        if (bAmmo && !ejectDLL) // freeze
         {
             uintptr_t* ptrAmmo1 = (uintptr_t*)mem::FindDMAAddy(clientWeapon, Offsets::p_ammo1);
             uintptr_t* ptrAmmo2 = (uintptr_t*)mem::FindDMAAddy(clientWeapon, Offsets::p_ammo2);
@@ -46,10 +49,10 @@ DWORD WINAPI MainThread(HMODULE hModule)
         }
 
         // -- god mode (you)
-        if (GetAsyncKeyState(VK_F2) & 1 || ejectDLL) 
+        if (GetAsyncKeyState(VK_F2) & 1) 
             bHealth = !bHealth;
 
-        if (bHealth && !ejectDLL)
+        if (bHealth && !ejectDLL) // freeze
         {            
             uintptr_t* ptrHealth = (uintptr_t*)mem::FindDMAAddy(clientAttributes, Offsets::p_health);
             if (ptrHealth)
@@ -86,7 +89,7 @@ DWORD WINAPI MainThread(HMODULE hModule)
         }
 
         // -- points
-        if (GetAsyncKeyState(VK_F5) & 1 || ejectDLL)
+        if (GetAsyncKeyState(VK_F5) & 1)
         {
             uintptr_t* ptrPoints = (uintptr_t*)mem::FindDMAAddy(clientInfo, Offsets::p_points);
             if (ptrPoints)
@@ -94,7 +97,7 @@ DWORD WINAPI MainThread(HMODULE hModule)
         }
 
         // -- max ammo
-        if (GetAsyncKeyState(VK_F6) & 1 || ejectDLL)
+        if (GetAsyncKeyState(VK_F6) & 1)
         {
             uintptr_t* ptrMag1 = (uintptr_t*)mem::FindDMAAddy(clientWeapon, Offsets::p_mag1);
             uintptr_t* ptrMag2 = (uintptr_t*)mem::FindDMAAddy(clientWeapon, Offsets::p_mag2);
@@ -108,6 +111,38 @@ DWORD WINAPI MainThread(HMODULE hModule)
 
             if (ptrGrenades)
                 *(int*)ptrGrenades = 6;
+        }
+        
+        // -- loop through zm ent list
+        if (GetAsyncKeyState(VK_F7) & 1)
+        {
+            int entCount = 0;
+            for (long long i = 0; i < 60; i++)
+            {
+                uintptr_t* ptrEntityHealth = (uintptr_t*)mem::FindDMAAddy(zm_entList + (i * 0x2110), Offsets::zm_health);
+                if (ptrEntityHealth)
+                {
+                    if (*(int*)ptrEntityHealth <= 0) continue;
+                    entCount++;                    
+                }                
+            }
+            Log("Ent count = " + std::to_string(entCount));
+        }
+
+        // -- instant kill
+        if (GetAsyncKeyState(VK_F8) & 1)
+        {
+            for (long long i = 0; i < 60; i++)
+            {
+                uintptr_t* ptrEntityHealth = (uintptr_t*)mem::FindDMAAddy(zm_entList + (i * 0x2110), Offsets::zm_health);
+                if (ptrEntityHealth)
+                {
+                    if (*(int*)ptrEntityHealth <= 0) continue;
+
+                    *(int*)ptrEntityHealth = 1;
+                    bInstantKill = false;              
+                }
+            }
         }
     }
 
