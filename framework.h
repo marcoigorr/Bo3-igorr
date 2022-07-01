@@ -5,3 +5,9 @@
 #include <windows.h>
 #include <TlHelp32.h>
 #include <vector>
+
+#include <string>
+#include <chrono>
+#include <stdlib.h>
+#include <iostream>
+#include <fstream>
