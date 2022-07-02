@@ -4,6 +4,7 @@
 namespace Offsets
 {
 	// "blackops3.exe" + 0A5701B8
+	std::vector<unsigned int> zm_pos = { 0x1C };
 	std::vector<unsigned int> zm_health = { 0x2C8 };
 
 	// "blackops3.exe" + 0A54BDE8

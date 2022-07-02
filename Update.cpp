@@ -14,9 +14,37 @@ void update::Log(const std::string& text) {
 void update::Hack(uintptr_t moduleBase)
 {
     uintptr_t clientAttributes = moduleBase + 0x0A54BDE8; // hp
-    uintptr_t clientWeapon = moduleBase + 0x0A54BDE0; // ammo/mag/grenades
+    uintptr_t clientWeapon = moduleBase + 0x0A54BDE0; // ammo/mag/grenades/rapidfire
     uintptr_t clientInfo = moduleBase + 0x179086D8; // nick/points
     uintptr_t zm_entList = moduleBase + 0x0A5701B8; //zm_hp/zm_pos
+
+    // Getting zombie number based on R (round number)
+    // Formula is not precise but it save some time when looping through ent list
+    uintptr_t zm_roundAddr = (uintptr_t)moduleBase + 0xA55DDEC;
+    int R = *(int*)zm_roundAddr;
+    int zm_number = 0.000225f * pow(R, 3) + 0.314314f * pow(R, 2) + 1.835712f * R + 27.596132f;
+
+    if (GetAsyncKeyState(VK_END) & 1) // debug
+    {        
+        Log(std::to_string(zm_number));
+    }
+    
+    // -- loop through zm list
+    int entCount = 0;
+    for (long long i = 0; i < zm_number; i++)
+    {
+        uintptr_t* ptrEntityHealth = (uintptr_t*)mem::FindDMAAddy(zm_entList + (i * 0x2110), Offsets::zm_health);
+        if (ptrEntityHealth)
+        {
+            if (*(int*)ptrEntityHealth <= 0) continue;
+            // -- Ent count
+            entCount++;
+
+            // -- Instant Kill
+            if (Options::bInstantKill)
+                *(int*)ptrEntityHealth = 1; // set zm_hp to 1
+        }
+    }
 
     // -- unlimited ammo (you)
     if (GetAsyncKeyState(VK_F1) & 1)
@@ -103,41 +131,18 @@ void update::Hack(uintptr_t moduleBase)
             *(int*)ptrGrenades = 6;
     }
 
-    // -- loop through zm ent list and get zm count
+    // -- Zombie count
     if (GetAsyncKeyState(VK_F7) & 1)
     {
-        int entCount = 0;
-        for (long long i = 0; i < 60; i++)
-        {
-            uintptr_t* ptrEntityHealth = (uintptr_t*)mem::FindDMAAddy(zm_entList + (i * 0x2110), Offsets::zm_health);
-            if (ptrEntityHealth)
-            {
-                if (*(int*)ptrEntityHealth <= 0) continue;
-                entCount++;
-            }
-        }
+        // Options::bEntCout = !Options::bEntCout;
         Log("Ent count = " + std::to_string(entCount));
-    }
+    }               
 
     // -- instant kill
     if (GetAsyncKeyState(VK_F8) & 1)
         Options::bInstantKill = !Options::bInstantKill;
 
-    if (Options::bInstantKill && !ejectDLL)
-    {
-        for (long long i = 0; i < 60; i++)
-        {
-            uintptr_t* ptrEntityHealth = (uintptr_t*)mem::FindDMAAddy(zm_entList + (i * 0x2110), Offsets::zm_health);
-            if (ptrEntityHealth)
-            {
-                if (*(int*)ptrEntityHealth <= 0) continue; // if zm not alive skip
-
-                *(int*)ptrEntityHealth = 1; // set zm_hp to 1
-            }
-        }
-    }
-
-    // -- Rapid fire (you)
+    // -- Rapid fire (you) don't buy soda or gubblegum while this is active.
     if (GetAsyncKeyState(VK_F9) & 1)
         Options::bRapidFire = !Options::bRapidFire;
 
@@ -165,5 +170,18 @@ void update::Hack(uintptr_t moduleBase)
         }
     }
 
-    
+    // -- Freeze Current divinum
+    if (GetAsyncKeyState(VK_F11) & 1 || ejectDLL)
+    {
+        Options::bDivinumFreeze = !Options::bDivinumFreeze;
+
+        if (Options::bDivinumFreeze && !ejectDLL) // nop -> blackops3.exe+1E0AC88 - 89 6C 18 24 - mov [rax+rbx+24],ebp
+        {
+            mem::Nop((BYTE*)moduleBase + 0x1E0AC88, 4);
+        }
+        else // Patch
+        {
+            mem::Patch((BYTE*)moduleBase + 0x1E0AC88, (BYTE*)"\x89\x6C\x18\x24", 4);
+        }
+    }    
 }

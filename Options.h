@@ -2,6 +2,9 @@
 
 namespace Options
 {
+	// -- Game
+	extern bool bDivinumFreeze;
+
 	// -- Ammo
 	extern bool bAmmo; // F1
 	extern bool bGAmmo; // F2

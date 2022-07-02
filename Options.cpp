@@ -3,6 +3,9 @@
 
 namespace Options
 {
+	// Game
+	bool bDivinumFreeze = false;
+
 	// -- Ammo
 	bool bAmmo = false;
 	bool bGAmmo = false;
