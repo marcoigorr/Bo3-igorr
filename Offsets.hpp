@@ -10,6 +10,7 @@ namespace Offsets
 	std::vector<unsigned int> p_health = { 0x2C8 };
 
 	// "blackops3.exe" + 0A54BDE0
+	std::vector<unsigned int> p_rapidFire = { 0x54 };
 	std::vector<unsigned int> p_ammo1 = { 0x688 };
 	std::vector<unsigned int> p_mag1 = { 0x64C };
 	std::vector<unsigned int> p_ammo2 = { 0x690 };

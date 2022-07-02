@@ -22,6 +22,12 @@
     <Filter Include="Offsets">
       <UniqueIdentifier>{c7e947f6-b769-4918-bf74-5c5232630537}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Update">
+      <UniqueIdentifier>{d6a7bc5c-9b49-4b76-a8b3-34d62ee4fb13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Options">
+      <UniqueIdentifier>{1c0e0cf8-77f7-44e9-93d0-7e0263dd8890}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -36,6 +42,12 @@
     <ClInclude Include="Offsets.hpp">
       <Filter>Offsets</Filter>
     </ClInclude>
+    <ClInclude Include="Update.h">
+      <Filter>Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Options.h">
+      <Filter>Options</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -46,6 +58,12 @@
     </ClCompile>
     <ClCompile Include="mem.cpp">
       <Filter>mem</Filter>
+    </ClCompile>
+    <ClCompile Include="Update.cpp">
+      <Filter>Update</Filter>
+    </ClCompile>
+    <ClCompile Include="Options.cpp">
+      <Filter>Options</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

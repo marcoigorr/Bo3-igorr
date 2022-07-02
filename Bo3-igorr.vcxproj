@@ -155,11 +155,15 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Offsets.hpp" />
     <ClInclude Include="mem.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="Update.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="mem.cpp" />
+    <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Update.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
