@@ -19,9 +19,6 @@ _If I don't specify who the cheat is for, I mean personal._
   - **Zombie Counter**
   - **Instant Kill**            *(everyone, zm_health is set to 1)*
 
-- Client hack
-  - Liquid divinum freeze
-
 ## How to...
 
 Download from release and inject it at any moment
