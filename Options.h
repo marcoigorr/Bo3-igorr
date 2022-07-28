@@ -7,10 +7,10 @@ public:
 
 	// cheat features
 	bool bMenu = true;
-	bool bGodMode = false, bInfHealth = false, bNoRecoil = false;
+	bool bGodMode = false, bInfHealth = false, bNoRecoil = false, bInfiniteAmmo = false, bRapidFire = false;
 
-	bool* features[3] = {
-		&bGodMode, &bInfHealth, &bNoRecoil
+	bool* features[5] = {
+		&bGodMode, &bInfHealth, &bNoRecoil, &bInfiniteAmmo, &bRapidFire
 	};
 
 	static void SetAllFalse();

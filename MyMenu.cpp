@@ -129,6 +129,7 @@ void  MyMenu::Draw()
                 if (ImGui::BeginTabItem("Weapon"))
                 {
                     AddCheckBox("No Recoil", &options->bNoRecoil);
+                    AddCheckBox("Infinite Ammo", &options->bInfiniteAmmo);
 
                     ImGui::EndTabItem();
                 }

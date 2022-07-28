@@ -71,6 +71,19 @@ DWORD WINAPI MainThread(HMODULE hModule)
             }
         }
 
+        // -- Ammo
+        if (cPAddr->ammo1) // enough
+        {
+            if (options->bInfiniteAmmo)
+            {
+                *(int*)cPAddr->ammo1 = 50;
+                *(int*)cPAddr->mag1 = 850;
+                *(int*)cPAddr->ammo2 = 50;
+                *(int*)cPAddr->mag2 = 850;
+                *(int*)cPAddr->grenades = 6;
+            }
+        }
+
         // -- Menu
         if (GetAsyncKeyState(VK_INSERT) & 1)
         {
