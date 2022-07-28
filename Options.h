@@ -1,27 +1,20 @@
 #pragma once
 
-namespace Options
+class Options
 {
-	// -- Game
-	extern bool bDivinumFreeze;
+public:
+	bool isEjecting = false;
 
-	// -- Ammo
-	extern bool bAmmo; // F1
-	extern bool bGAmmo; // F2
+	// cheat features
+	bool bMenu = true;
+	bool bGodMode = false, bInfHealth = false, bNoRecoil = false;
 
-	// -- Health
-	extern bool bHealth; // F3
-	extern bool bGHealth; // F4
+	bool* features[3] = {
+		&bGodMode, &bInfHealth, &bNoRecoil
+	};
 
-	// -- Rapid Fire
-	extern bool bRapidFire; // F9
-	extern bool bGRapidFire; // F10
+	static void SetAllFalse();
+	static void SetAllTrue();
+};
 
-	// -- zm
-	extern bool bEntCout; // F7
-	extern bool bInstantKill; // F8
-
-	// -- sys
-	extern bool ejectDLL;
-}
-
+extern Options* options;

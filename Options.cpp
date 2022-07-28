@@ -1,24 +1,21 @@
 #include "pch.h"
 #include "Options.h"
 
-namespace Options
+
+void Options::SetAllFalse()
 {
-	// Game
-	bool bDivinumFreeze = false;
-
-	// -- Ammo
-	bool bAmmo = false;
-	bool bGAmmo = false;
-	// -- Health
-	bool bHealth = false;
-	bool bGHealth = false;
-	// -- Rapid Fire
-	bool bRapidFire = false;
-	bool bGRapidFire = false;
-	// -- zm
-	bool bEntCout = false;
-	bool bInstantKill = false;
-
-	// -- sys
-	bool ejectDLL = false;
+	for (int i = 0; i < 3; i++)
+	{
+		*options->features[i] = false;
+	}
 }
+
+void Options::SetAllTrue()
+{
+	for (int i = 0; i < 3; i++)
+	{
+		*options->features[i] = true;
+	}
+}
+
+Options* options = new Options();

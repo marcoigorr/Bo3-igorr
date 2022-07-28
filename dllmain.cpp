@@ -1,40 +1,98 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
-#include "Update.h"
+#include "mem.h"
+
+#include "Address.h"
+#include "Offset.h"
+
 #include "Options.h"
-using namespace Options;
+
+#include "DX11.h"
+using namespace d3d11Menu;
+
+#define isEjecting options->isEjecting
 
 
 DWORD WINAPI MainThread(HMODULE hModule)
 {
-    uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"blackops3.exe");    
-
-    while (!ejectDLL)
+    // Hook d3d11, render ImGUI
+    if (!InitMenu())
     {
-        if (GetAsyncKeyState(VK_INSERT) & 1)
-        {
-            ejectDLL = true;
-            update::Log("Ejecting dll...");
-        }     
-
-        update::Hack(moduleBase);        
+        isEjecting = true;
     }
 
+    // Hack loop
+    while (!isEjecting)
+    {
+        // Press END to eject dll
+        isEjecting = ((GetAsyncKeyState(VK_END)) ? true : false);
+
+        if (isEjecting)
+        {
+            options->SetAllFalse();
+        }
+        else
+        {
+            addr->calcAddresses();
+        }
+
+        // -- GodMode
+        if (cPAddr->godMode)
+        {
+            if (options->bGodMode)
+            {
+                *(byte*)cPAddr->godMode = 9;
+            }
+            else
+            {
+                *(byte*)cPAddr->godMode = 8;
+            }
+        }
+
+        // -- InfHealth
+        if (cPAddr->health)
+        {
+            if (options->bInfHealth)
+            {
+                *(int*)cPAddr->health = 300;
+            }
+        }
+
+        // -- NoRecoil
+        if (cPAddr->recoil)
+        {
+            if (options->bNoRecoil)
+            {
+                *(int*)cPAddr->recoil = 195;
+            }
+            else
+            {
+                *(int*)cPAddr->recoil = 1220840264;
+            }
+        }
+
+        // -- Menu
+        if (GetAsyncKeyState(VK_INSERT) & 1)
+        {
+            options->bMenu = !options->bMenu;
+        }
+    }
+
+    // Cleanup/Eject    
+    if (!StopMenu()) {
+        return 1;
+    }
     FreeLibraryAndExitThread(hModule, 0);
-    return 0;    
+
+    return 0;
 }
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-                     )
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-    {
-        CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)MainThread, hModule, NULL, NULL);
-    }
+        CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)MainThread, 0, 0, NULL);
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
@@ -42,4 +100,3 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     }
     return TRUE;
 }
-

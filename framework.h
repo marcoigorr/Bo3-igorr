@@ -1,13 +1,23 @@
 #pragma once
+#pragma warning(disable : 6387)
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-// Windows Header Files
+
 #include <windows.h>
-#include <TlHelp32.h>
+#include <cstdint>
+#include <Psapi.h>
 #include <vector>
 
-#include <string>
-#include <chrono>
-#include <stdlib.h>
-#include <iostream>
-#include <fstream>
+#include "MinHook/MinHook.h" // $(SolutionDir)\MinHook;
+#pragma comment(lib, "MinHook/libMinHook.x64.lib")
+
+
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_impl_win32.h"
+#include "ImGui/imgui_impl_dx11.h"
+
+#include <d3d11.h>
+#pragma comment(lib, "d3d11.lib")
+
+// mine
+#include "mem.h"

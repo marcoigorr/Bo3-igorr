@@ -1,20 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="pch">
-      <UniqueIdentifier>{bde49f2f-a3fc-411d-88dd-d737a4d7ff5b}</UniqueIdentifier>
     </Filter>
     <Filter Include="mem">
       <UniqueIdentifier>{037782e3-24a2-4985-9919-228df7a14777}</UniqueIdentifier>
@@ -22,11 +11,26 @@
     <Filter Include="Offsets">
       <UniqueIdentifier>{c7e947f6-b769-4918-bf74-5c5232630537}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Update">
-      <UniqueIdentifier>{d6a7bc5c-9b49-4b76-a8b3-34d62ee4fb13}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Options">
       <UniqueIdentifier>{1c0e0cf8-77f7-44e9-93d0-7e0263dd8890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\pch">
+      <UniqueIdentifier>{bde49f2f-a3fc-411d-88dd-d737a4d7ff5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGUI">
+      <UniqueIdentifier>{a166fdb7-e81c-4727-8ede-0c371e27462e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{b90390a5-a74e-484c-adb7-c45d8afec621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\d3d11">
+      <UniqueIdentifier>{64f60880-c62c-4d52-813a-da213307b09e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addresses">
+      <UniqueIdentifier>{038c08f6-1938-4030-8715-e2a3b4768952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MinHook">
+      <UniqueIdentifier>{03a01c11-5d6d-458a-9a6e-9f50fb8c8e8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,36 +38,97 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>pch</Filter>
+      <Filter>Header Files\pch</Filter>
     </ClInclude>
     <ClInclude Include="mem.h">
       <Filter>mem</Filter>
     </ClInclude>
-    <ClInclude Include="Offsets.hpp">
-      <Filter>Offsets</Filter>
-    </ClInclude>
-    <ClInclude Include="Update.h">
-      <Filter>Update</Filter>
-    </ClInclude>
     <ClInclude Include="Options.h">
       <Filter>Options</Filter>
     </ClInclude>
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx11.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DX11.h">
+      <Filter>Menu\d3d11</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Offset.h">
+      <Filter>Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="Address.h">
+      <Filter>Addresses</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook\MinHook.h">
+      <Filter>MinHook</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>pch</Filter>
+      <Filter>Header Files\pch</Filter>
     </ClCompile>
     <ClCompile Include="mem.cpp">
       <Filter>mem</Filter>
     </ClCompile>
-    <ClCompile Include="Update.cpp">
-      <Filter>Update</Filter>
-    </ClCompile>
     <ClCompile Include="Options.cpp">
       <Filter>Options</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_demo.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="DX11.cpp">
+      <Filter>Menu\d3d11</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Offset.cpp">
+      <Filter>Offsets</Filter>
+    </ClCompile>
+    <ClCompile Include="Address.cpp">
+      <Filter>Addresses</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
