@@ -21,4 +21,4 @@ _If I don't specify who the cheat is for, I mean personal._
 
 ## How to...
 
-Download from release and inject it at any moment
+Download from release and inject it at any moment.
