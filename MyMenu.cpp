@@ -68,7 +68,7 @@ void MyMenu::SetStyle()
 
 void AddCheckBox(const char* title, bool* var)
 {
-    ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y + 15));
+    ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y + 8));
     ImGui::Checkbox(title, var);
 }
 
@@ -130,6 +130,18 @@ void  MyMenu::Draw()
                 {
                     AddCheckBox("No Recoil", &options->bNoRecoil);
                     AddCheckBox("Infinite Ammo", &options->bInfiniteAmmo);
+                    AddCheckBox("Rapid Fire", &options->bRapidFire);
+
+                    ImGui::EndTabItem();
+                }
+
+                // -- Misc
+                if (ImGui::BeginTabItem("Misc"))
+                {
+                    if (AddButton("Add 500 points"))
+                    {
+                        options->bAddPoints = true;
+                    }
 
                     ImGui::EndTabItem();
                 }

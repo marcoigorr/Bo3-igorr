@@ -76,11 +76,37 @@ DWORD WINAPI MainThread(HMODULE hModule)
         {
             if (options->bInfiniteAmmo)
             {
-                *(int*)cPAddr->ammo1 = 50;
+                *(int*)cPAddr->ammo1 = 99;
+                *(int*)cPAddr->ammo2 = 99;
+                *(int*)cPAddr->ammo3 = 99;
+                *(int*)cPAddr->ammo4 = 99;
                 *(int*)cPAddr->mag1 = 850;
-                *(int*)cPAddr->ammo2 = 50;
                 *(int*)cPAddr->mag2 = 850;
-                *(int*)cPAddr->grenades = 6;
+                *(int*)cPAddr->mag3 = 850;
+                *(int*)cPAddr->mag4 = 850;
+                *(int*)cPAddr->specGun = 420;
+                *(int*)cPAddr->grenades = 10;
+                *(int*)cPAddr->grenadesSpec = 10;
+            }
+        }
+
+        // -- rapidFire
+        if (cPAddr->rapidFire && cPAddr->rapidFire2)
+        {
+            if (options->bRapidFire)
+            {
+                *(int*)cPAddr->rapidFire = 0;
+                *(int*)cPAddr->rapidFire2 = 0;
+            }
+        }
+
+        // -- Points
+        if (cPAddr->points)
+        {
+            if (options->bAddPoints)
+            {
+                *(int*)cPAddr->points += 500;
+                options->bAddPoints = false;
             }
         }
 

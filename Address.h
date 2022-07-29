@@ -17,11 +17,22 @@ public:
 		uintptr_t* health;
 		uintptr_t recoil;
 		uintptr_t* rapidFire;
+		uintptr_t* rapidFire2;
+		uintptr_t* clipAmmo;
+		uintptr_t* stockAmmo;
 		uintptr_t* ammo1;
-		uintptr_t* mag1;
 		uintptr_t* ammo2;
+		uintptr_t* ammo3;
+		uintptr_t* ammo4;
+		uintptr_t* mag1;		
 		uintptr_t* mag2;
+		uintptr_t* mag3;
+		uintptr_t* mag4;
+		uintptr_t* specGun;
 		uintptr_t* grenades;
+		uintptr_t* grenadesSpec;
+		uintptr_t* movementSpeed;
+		uintptr_t* points;
 	};
 
 };

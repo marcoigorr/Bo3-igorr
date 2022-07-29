@@ -4,7 +4,7 @@
 
 void Options::SetAllFalse()
 {
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		*options->features[i] = false;
 	}
@@ -12,7 +12,7 @@ void Options::SetAllFalse()
 
 void Options::SetAllTrue()
 {
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		*options->features[i] = true;
 	}
