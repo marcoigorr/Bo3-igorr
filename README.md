@@ -11,14 +11,22 @@
 _If I don't specify who the cheat is for, I mean personal._
 
 - In Game hacks
-  - **God mode**                *(everyone / only you)*
-  - **Unlimited Ammo**          *(everyone / only you)*
-  - **Rapid fire**              *(everyone / only you -> <ins>bug if you buy soda or gubblegum</ins>)*
+  - **God mode**                
+  - **Unlimited Ammo**          
+  - **Rapid fire** 
+  - **No Recoil**
   - **Add 500 points**
-  - **Max ammo** 
   - **Zombie Counter**
   - **Instant Kill**            *(everyone, zm_health is set to 1)*
+
+## Menu Preview
+
+![gifBo3](https://user-images.githubusercontent.com/87567996/182022764-32042e19-fd5a-4d1a-b67a-aa0033dece8a.gif)
 
 ## How to...
 
 Download from release and inject it at any moment.
+
+## Credits
+
+For the D3D11 x64bit hook and ImGUI implementation: Kiero
