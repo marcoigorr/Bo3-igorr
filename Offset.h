@@ -36,7 +36,8 @@ public:
 	class Zombie
 	{
 	public:
-		// "blackops3.exe" + 0A5701B8
+		// "blackops3.exe" + 0x0A54BE40 / 8;
+		std::vector<unsigned int> count =		{ 0x3C };
 		std::vector<unsigned int> pos =			{ 0x1C };
 		std::vector<unsigned int> health =		{ 0x2C8 };
 	};

@@ -5,6 +5,7 @@
 #define baseModule addr->baseModule
 #define playerBase addr->playerBase
 #define playerPed addr->playerPed
+#define zombieCount addr->zombieCount
 
 
 void Address::calcAddresses()
@@ -29,7 +30,11 @@ void Address::calcAddresses()
 	cPAddr->grenadesSpec =	(uintptr_t*)mem::FindDMAAddy(playerBase, cPOffset->grenadesSpec);	
 	cPAddr->movementSpeed =	(uintptr_t*)mem::FindDMAAddy(playerBase, cPOffset->movementSpeed);
 	cPAddr->points =		(uintptr_t*)mem::FindDMAAddy(playerBase, cPOffset->points);
+
+	cZAddr->count =			(uintptr_t*)mem::FindDMAAddy(zombieCount, cZOffset->count);
 }
 
 Address* addr = new Address();
 Address::Player* cPAddr = new Address::Player();
+Address::Zombie* cZAddr = new Address::Zombie();
+

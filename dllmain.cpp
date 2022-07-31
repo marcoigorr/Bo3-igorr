@@ -36,6 +36,22 @@ DWORD WINAPI MainThread(HMODULE hModule)
             addr->calcAddresses();
         }
 
+        // -- Instant kill, Ent list loop
+        if (options->bInstantKill)
+        {
+            for (long long i = 0; i < *(int*)cZAddr->count; i++)
+            {
+                uintptr_t* ptrEntityHealth = (uintptr_t*)mem::FindDMAAddy(addr->zombieBase + (i * 0x2110), cZOffset->health);
+                if (ptrEntityHealth)
+                {
+                    if (*(int*)ptrEntityHealth <= 0) continue;
+
+                    // -- Set HP to 1
+                    *(int*)ptrEntityHealth = 1;
+                }
+            }
+        }        
+
         // -- GodMode
         if (cPAddr->godMode)
         {

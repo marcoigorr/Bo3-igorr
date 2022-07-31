@@ -131,6 +131,8 @@ void  MyMenu::Draw()
                     AddCheckBox("No Recoil", &options->bNoRecoil);
                     AddCheckBox("Infinite Ammo", &options->bInfiniteAmmo);
                     AddCheckBox("Rapid Fire", &options->bRapidFire);
+                    ImGui::SameLine();
+                    ImGui::TextColored(Red, "(Don't buy perks or PAP with this active!)");
 
                     ImGui::EndTabItem();
                 }
@@ -141,6 +143,15 @@ void  MyMenu::Draw()
                     if (AddButton("Add 500 points"))
                     {
                         options->bAddPoints = true;
+                    }
+
+                    ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 15.f);
+
+                    AddCheckBox("Instant Kill", &options->bInstantKill);
+                    // ImGui::SameLine();
+                    if (cZAddr->count)
+                    { 
+                        AddSlider<int>("zm_Count", &*(int*)cZAddr->count, *(int*)cZAddr->count, *(int*)cZAddr->count);
                     }
 
                     ImGui::EndTabItem();

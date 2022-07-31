@@ -7,6 +7,7 @@
 #include <cstdint>
 #include <Psapi.h>
 #include <vector>
+#include <string>
 
 #include "MinHook/MinHook.h" // $(SolutionDir)\MinHook;
 #pragma comment(lib, "MinHook/libMinHook.x64.lib")

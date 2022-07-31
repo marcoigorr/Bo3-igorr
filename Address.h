@@ -6,6 +6,7 @@ public:
 	uintptr_t baseModule = (uintptr_t)GetModuleHandle(L"blackops3.exe");
 	uintptr_t playerBase = baseModule + 0x0A54BDE0;
 	uintptr_t playerPed = baseModule + 0x0A54BDE8;
+	uintptr_t zombieCount = baseModule + 0x0A54BE40;
 	uintptr_t zombieBase = baseModule + 0x0A5701B8;
 
 	void calcAddresses();
@@ -35,7 +36,15 @@ public:
 		uintptr_t* points;
 	};
 
+	class Zombie
+	{
+	public:
+		uintptr_t* count;
+	};
+
 };
 
 extern Address* addr;
 extern Address::Player* cPAddr;
+extern Address::Zombie* cZAddr;
+
