@@ -70,7 +70,7 @@ static long __stdcall detour_present(IDXGISwapChain* p_swap_chain, UINT sync_int
             io.LogFilename = nullptr;
             io.WantSaveIniSettings = false;
             io.ConfigWindowsMoveFromTitleBarOnly = true;
-            io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Tahoma.ttf", 18.0f);
+            io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Tahoma.ttf", 15.0f);
 
             // custom style
             Menu->SetStyle();
