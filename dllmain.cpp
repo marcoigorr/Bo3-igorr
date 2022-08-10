@@ -35,11 +35,17 @@ DWORD WINAPI MainThread(HMODULE hModule)
         {
             addr->calcAddresses();
         }
+        
+        // Getting zombie number based on (R)ound
+        // Formula is not precise but it save some time when looping through ent list
+        
+        int R = *(int*)addr->round;
+        int zm_number = 0.000225f * pow(R, 3) + 0.314314f * pow(R, 2) + 1.835712f * R + 27.596132f;
 
         // -- Instant kill, Ent list loop
         if (options->bInstantKill)
         {
-            for (long long i = 0; i < *(int*)cZAddr->count; i++)
+            for (long long i = 0; i < zm_number; i++)
             {
                 uintptr_t* ptrEntityHealth = (uintptr_t*)mem::FindDMAAddy(addr->zombieBase + (i * 0x2110), cZOffset->health);
                 if (ptrEntityHealth)

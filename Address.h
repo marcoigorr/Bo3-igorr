@@ -9,6 +9,8 @@ public:
 	uintptr_t zombieCount = baseModule + 0x0A54BE40;
 	uintptr_t zombieBase = baseModule + 0x0A5701B8;
 
+	uintptr_t round = baseModule + 0xA55DDEC;
+
 	void calcAddresses();
 
 	class Player

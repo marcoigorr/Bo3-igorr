@@ -151,7 +151,7 @@ void  MyMenu::Draw()
                     // ImGui::SameLine();
                     if (cZAddr->count)
                     { 
-                        AddSlider<int>("zm_Count", &*(int*)cZAddr->count, *(int*)cZAddr->count, *(int*)cZAddr->count);
+                        AddSlider<int>("Spawned zm_Count", &*(int*)cZAddr->count, *(int*)cZAddr->count, *(int*)cZAddr->count);
                     }
 
                     ImGui::EndTabItem();
